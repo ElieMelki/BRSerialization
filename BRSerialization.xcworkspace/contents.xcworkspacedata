@@ -5,6 +5,9 @@
       location = "group:BRSerialization.podspec">
    </FileRef>
    <FileRef
+      location = "group:README.md">
+   </FileRef>
+   <FileRef
       location = "group:BRSerialization/BRSerialization.xcodeproj">
    </FileRef>
 </Workspace>

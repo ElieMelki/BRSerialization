@@ -10,7 +10,7 @@
 #import "BRSerializer.h"
 #import "BRDeserializer.h"
 
-@interface BRSerialization : NSObject
+@interface BRSerializationFacade : NSObject
 
 + (id) serializeObject:(id)object
             serialiser:(id<BRSerializer>)serializer

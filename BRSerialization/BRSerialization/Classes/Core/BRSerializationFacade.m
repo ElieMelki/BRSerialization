@@ -6,9 +6,9 @@
 //  Copyright © 2015 @Me. All rights reserved.
 //
 
-#import "BRSerialization.h"
+#import "BRSerializationFacade.h"
 
-@implementation BRSerialization
+@implementation BRSerializationFacade
 
 + (id) serializeObject:(id)object
             serialiser:(id<BRSerializer>)serializer

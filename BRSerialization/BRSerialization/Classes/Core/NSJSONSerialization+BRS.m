@@ -7,7 +7,7 @@
 //
 
 #import "NSJSONSerialization+BRS.h"
-#import "BRSerialization.h"
+#import "BRSerializationFacade.h"
 
 @implementation NSJSONSerialization (BRS)
 
@@ -18,7 +18,7 @@
 {
     NSError *serializationError = nil;
     
-    id _primitive = [BRSerialization serializeObject:obj
+    id _primitive = [BRSerializationFacade serializeObject:obj
                                                        serialiser:serializer
                                                             error:&serializationError];
     
@@ -51,7 +51,7 @@
     }
     else
     {
-        return [BRSerialization deserializeData:_primitive deserialiser:deserializer error:error];
+        return [BRSerializationFacade deserializeData:_primitive deserialiser:deserializer error:error];
     }
 }
 

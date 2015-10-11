@@ -11,8 +11,8 @@
 		478C7E201BCA7286003C9CB6 /* BRSerialization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 478C7E151BCA7286003C9CB6 /* BRSerialization.framework */; settings = {ASSET_TAGS = (); }; };
 		478C7E251BCA7286003C9CB6 /* BRSerializationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 478C7E241BCA7286003C9CB6 /* BRSerializationTests.m */; };
 		478C7E581BCA72B6003C9CB6 /* BRDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 478C7E311BCA72B6003C9CB6 /* BRDeserializer.h */; settings = {ASSET_TAGS = (); }; };
-		478C7E591BCA72B6003C9CB6 /* BRSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 478C7E321BCA72B6003C9CB6 /* BRSerialization.h */; settings = {ASSET_TAGS = (); }; };
-		478C7E5A1BCA72B6003C9CB6 /* BRSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 478C7E331BCA72B6003C9CB6 /* BRSerialization.m */; settings = {ASSET_TAGS = (); }; };
+		478C7E591BCA72B6003C9CB6 /* BRSerializationFacade.h in Headers */ = {isa = PBXBuildFile; fileRef = 478C7E321BCA72B6003C9CB6 /* BRSerializationFacade.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		478C7E5A1BCA72B6003C9CB6 /* BRSerializationFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 478C7E331BCA72B6003C9CB6 /* BRSerializationFacade.m */; settings = {ASSET_TAGS = (); }; };
 		478C7E5B1BCA72B6003C9CB6 /* BRSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 478C7E341BCA72B6003C9CB6 /* BRSerializer.h */; settings = {ASSET_TAGS = (); }; };
 		478C7E5C1BCA72B6003C9CB6 /* NSJSONSerialization+BRS.h in Headers */ = {isa = PBXBuildFile; fileRef = 478C7E351BCA72B6003C9CB6 /* NSJSONSerialization+BRS.h */; settings = {ASSET_TAGS = (); }; };
 		478C7E5D1BCA72B6003C9CB6 /* NSJSONSerialization+BRS.m in Sources */ = {isa = PBXBuildFile; fileRef = 478C7E361BCA72B6003C9CB6 /* NSJSONSerialization+BRS.m */; settings = {ASSET_TAGS = (); }; };
@@ -66,8 +66,8 @@
 		478C7E241BCA7286003C9CB6 /* BRSerializationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BRSerializationTests.m; sourceTree = "<group>"; };
 		478C7E261BCA7286003C9CB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		478C7E311BCA72B6003C9CB6 /* BRDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRDeserializer.h; sourceTree = "<group>"; };
-		478C7E321BCA72B6003C9CB6 /* BRSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRSerialization.h; sourceTree = "<group>"; };
-		478C7E331BCA72B6003C9CB6 /* BRSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRSerialization.m; sourceTree = "<group>"; };
+		478C7E321BCA72B6003C9CB6 /* BRSerializationFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRSerializationFacade.h; sourceTree = "<group>"; };
+		478C7E331BCA72B6003C9CB6 /* BRSerializationFacade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRSerializationFacade.m; sourceTree = "<group>"; };
 		478C7E341BCA72B6003C9CB6 /* BRSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRSerializer.h; sourceTree = "<group>"; };
 		478C7E351BCA72B6003C9CB6 /* NSJSONSerialization+BRS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSJSONSerialization+BRS.h"; sourceTree = "<group>"; };
 		478C7E361BCA72B6003C9CB6 /* NSJSONSerialization+BRS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSJSONSerialization+BRS.m"; sourceTree = "<group>"; };
@@ -173,8 +173,8 @@
 			isa = PBXGroup;
 			children = (
 				478C7E311BCA72B6003C9CB6 /* BRDeserializer.h */,
-				478C7E321BCA72B6003C9CB6 /* BRSerialization.h */,
-				478C7E331BCA72B6003C9CB6 /* BRSerialization.m */,
+				478C7E321BCA72B6003C9CB6 /* BRSerializationFacade.h */,
+				478C7E331BCA72B6003C9CB6 /* BRSerializationFacade.m */,
 				478C7E341BCA72B6003C9CB6 /* BRSerializer.h */,
 				478C7E351BCA72B6003C9CB6 /* NSJSONSerialization+BRS.h */,
 				478C7E361BCA72B6003C9CB6 /* NSJSONSerialization+BRS.m */,
@@ -249,7 +249,7 @@
 				478C7E641BCA72B6003C9CB6 /* BRDateSerialization.h in Headers */,
 				478C7E741BCA72B6003C9CB6 /* BROrderedSetSerialization.h in Headers */,
 				478C7E781BCA72B6003C9CB6 /* BRTypedOrderedSetSerialization.h in Headers */,
-				478C7E591BCA72B6003C9CB6 /* BRSerialization.h in Headers */,
+				478C7E591BCA72B6003C9CB6 /* BRSerializationFacade.h in Headers */,
 				478C7E6C1BCA72B6003C9CB6 /* BRRelativeURLSerialization.h in Headers */,
 				478C7E191BCA7286003C9CB6 /* BRSerialization.h in Headers */,
 				478C7E7A1BCA72B6003C9CB6 /* BRTypedSetSerialization.h in Headers */,
@@ -360,7 +360,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				478C7E5A1BCA72B6003C9CB6 /* BRSerialization.m in Sources */,
+				478C7E5A1BCA72B6003C9CB6 /* BRSerializationFacade.m in Sources */,
 				478C7E611BCA72B6003C9CB6 /* OrderedDictionary.m in Sources */,
 				478C7E671BCA72B6003C9CB6 /* BRJavaTimeIntervalSerialization.m in Sources */,
 				478C7E5D1BCA72B6003C9CB6 /* NSJSONSerialization+BRS.m in Sources */,
