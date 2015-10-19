@@ -7,13 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BRSerializer.h"
-#import "BRDeserializer.h"
+#import "BRISerialization.h"
 
 
 //Execpt a key for type NSString
 
-@interface BRTypedDictionarySerialization : NSObject<BRSerializer,BRDeserializer>
+@interface BRTypedDictionarySerialization : NSObject<BRISerialization>
 
 + (instancetype) typedDictionarySerializationWith:(id<BRSerializer,BRDeserializer>)serialization;
 

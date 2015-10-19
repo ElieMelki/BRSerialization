@@ -11,33 +11,31 @@
 
 @interface BRObjectSerialization()
 
+@property (nonatomic, strong) NSMutableDictionary *serialization;
+@property (nonatomic, strong) NSDictionary *propertiesMapper;
+
 @end
 
 @implementation BRObjectSerialization
 
 
-+ (instancetype) objectSerializationWith:(Class)theClass
++ (instancetype) objectSerializationWith:(Class)theClass propertiesMapper:(NSDictionary *)propertiesMapper
 {
-    return [[self alloc] initWithClass:theClass] ;
+    return [[self alloc] initWithClass:theClass propertiesMapper:propertiesMapper] ;
 }
 
 
 + (instancetype) objectSerializationWith:(Class)theClass combinedWithfirst:(BRObjectSerialization *)first second:(BRObjectSerialization *)second
 {
-    BRObjectSerialization *o = [[self class] objectSerializationWith:theClass];
     
     NSMutableDictionary *combinedProperties = [NSMutableDictionary dictionaryWithDictionary:first.propertiesMapper];
     [combinedProperties addEntriesFromDictionary:second.propertiesMapper];
-    o.propertiesMapper = combinedProperties;
-    
-    NSMutableDictionary *combinedSerializer = [NSMutableDictionary dictionaryWithDictionary:first.serializers];
-    [combinedSerializer addEntriesFromDictionary:second.serializers];
-    o.serializers = combinedSerializer;
+    BRObjectSerialization *o = [[self class] objectSerializationWith:theClass propertiesMapper:combinedProperties];
     
     
-    NSMutableDictionary *combinedDeserializers = [NSMutableDictionary dictionaryWithDictionary:first.deserializers];
-    [combinedDeserializers addEntriesFromDictionary:second.deserializers];
-    o.deserializers = combinedDeserializers;
+    NSMutableDictionary *combinedSerializations = [NSMutableDictionary dictionaryWithDictionary:first.serialization];
+    [combinedSerializations addEntriesFromDictionary:second.serialization];
+    o.serialization = combinedSerializations;
     
     return o;
 }
@@ -47,18 +45,30 @@
 //------------------------------------
 #pragma mark - Init & Dealloc
 
-- (id) initWithClass:(Class)theClass
+- (id) initWithClass:(Class)theClass propertiesMapper:(NSDictionary *)propertiesMapper
 {
     self = [super init];
     if (self)
     {
         _classType = theClass;
-        _serializers = [NSDictionary new];
-        _deserializers = [NSDictionary new];
-        _propertiesMapper = [NSDictionary new];
+        _serialization = [NSMutableDictionary dictionary];
+        _propertiesMapper = propertiesMapper;
     }
     return self;
 }
+
+#pragma mark - Public
+
+- (void) addSerialization:(id<BRISerialization>)serialization forProperty:(NSString *)property
+{
+    [_serialization setObject:serialization forKey:property];
+}
+
+- (void) removeSerializationForProperty:(NSString *)property
+{
+    [_serialization removeObjectForKey:property];
+}
+
 
 
 #pragma mark - BRSerializer implementation
@@ -73,7 +83,7 @@
             NSString *_key = [self.propertiesMapper objectForKey:_property];
            
             id _value = [theObject valueForKey:_property];
-            id<BRSerializer> _serializer = [self.serializers objectForKey:_property];
+            id<BRSerializer> _serializer = [self.serialization objectForKey:_property];
             
             if (_serializer)
                 _value = [_serializer serialize:_value];
@@ -110,7 +120,7 @@
             }
             else
             {
-                id _serializer = [self.deserializers objectForKey:_property];
+                id _serializer = [self.serialization objectForKey:_property];
                 if (_serializer && _propertyValue)
                     _propertyValue = [_serializer deserialize:_propertyValue];
                 

@@ -7,10 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BRSerializer.h"
-#import "BRDeserializer.h"
+#import "BRISerialization.h"
 
-@interface BRJavaTimeIntervalSerialization : NSObject<BRSerializer,BRDeserializer>
+@interface BRJavaTimeIntervalSerialization : NSObject<BRISerialization>
 
 + (instancetype) javaTimeIntervalSerialization;
 

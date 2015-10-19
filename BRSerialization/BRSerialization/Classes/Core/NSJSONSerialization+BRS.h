@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BRSerializer.h"
-#import "BRDeserializer.h"
+#import "BRISerialization.h"
 
 @interface NSJSONSerialization (BRS)
 

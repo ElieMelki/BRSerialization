@@ -8,10 +8,9 @@
 
 
 #import <Foundation/Foundation.h>
-#import "BRSerializer.h"
-#import "BRDeserializer.h"
+#import "BRISerialization.h"
 
-@interface BRLocaleSerialization : NSObject<BRSerializer,BRDeserializer>
+@interface BRLocaleSerialization : NSObject<BRISerialization>
 
 + (instancetype) localeSerialization;
 

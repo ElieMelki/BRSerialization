@@ -7,10 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BRSerializer.h"
-#import "BRDeserializer.h"
+#import "BRISerialization.h"
 
-@interface BROrderedSetSerialization : NSObject<BRSerializer,BRDeserializer>
+@interface BROrderedSetSerialization : NSObject<BRISerialization>
 
 + (instancetype)  orderedSetSerialization;
 

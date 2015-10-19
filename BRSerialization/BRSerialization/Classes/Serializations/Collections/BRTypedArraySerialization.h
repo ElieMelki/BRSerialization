@@ -7,10 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BRSerializer.h"
-#import "BRDeserializer.h"
+#import "BRISerialization.h"
 
-@interface BRTypedArraySerialization : NSObject<BRSerializer,BRDeserializer>
+@interface BRTypedArraySerialization : NSObject<BRISerialization>
 
 + (instancetype) typedArraySerializationWith:(id<BRDeserializer,BRDeserializer>)serialisation;
 

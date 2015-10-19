@@ -7,10 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BRSerializer.h"
-#import "BRDeserializer.h"
+#import "BRISerialization.h"
 
-@interface BRRelativeURLSerialization : NSObject<BRSerializer,BRDeserializer>
+@interface BRRelativeURLSerialization : NSObject<BRISerialization>
 
 + (instancetype) relativeSerializationWithBaseURL:(NSURL *)theBaseURL;
 
