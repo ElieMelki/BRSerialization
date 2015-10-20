@@ -2,7 +2,7 @@
 
 The BRSerialization SDK allow you to serialize and deserialise complex objects to basic data type (that can be valid to be a JSON objects or a plist) back and forth.
 
-BRSerialization SDK has an extension to for direct serialization from JSON data to complex object back and forth. It can aslo be a basic entry for SOAP.
+BRSerialization SDK has an extension for direct serialization from JSON data to complex object back and forth. It can aslo be a basic entry for SOAP.
 
 ## Table of Contents
 
