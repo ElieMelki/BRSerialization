@@ -7,30 +7,30 @@
 //
 
 #import "Customer.h"
-
+#import "OrderedDictionary.h"
 @implementation Customer
 
 + (id<BRISerialization>) serialization
 {
     Class clazz = [self class];
     
-    NSString *_nameProperty = NSStringFromSelector(@selector(name));
-    NSString *_identifierProperty = NSStringFromSelector(@selector(identifier));
-    NSString *_websiteURLProperty = NSStringFromSelector(@selector(websiteURL));
-    NSString *_contactURLProperty = NSStringFromSelector(@selector(contactURL));
-   
+    NSString *nameProperty = NSStringFromSelector(@selector(name));
+    NSString *identifierProperty = NSStringFromSelector(@selector(identifier));
+    NSString *websiteURLProperty = NSStringFromSelector(@selector(websiteURL));
+    NSString *contactURLProperty = NSStringFromSelector(@selector(contactURL));
+
     
     BRObjectSerialization *_serialisation = [BRObjectSerialization objectSerializationWith:clazz
-                                                                          propertiesMapper:@{
-                                                                                             _identifierProperty : @"id",
-                                                                                             _nameProperty : @"name",
-                                                                                             _websiteURLProperty : @"websiteURL",
-                                                                                             _contactURLProperty : @"contactURL"
-                                                                                             
-                                                                                             }];
-    [_serialisation addSerialization:[BRAbsoluteURLSerialization absoluteURLSerialization] forProperty:_websiteURLProperty];
+                                                                          propertiesMapper:[OrderedDictionary dictionaryWithObjectsAndKeys:
+                                                                                            @"id",identifierProperty,
+                                                                                            @"name",nameProperty,
+                                                                                             @"websiteURL", websiteURLProperty,
+                                                                                            @"contactURL", contactURLProperty ,
+                                                                                            nil]];
+    
+    [_serialisation addSerialization:[BRAbsoluteURLSerialization absoluteURLSerialization] forProperty:websiteURLProperty];
     [_serialisation addSerialization:[BRRelativeURLSerialization relativeSerializationWithBaseURL:[NSURL URLWithString:@"http://www.google.com"]]
-                         forProperty:_contactURLProperty];
+                         forProperty:contactURLProperty];
     
     return _serialisation;
 

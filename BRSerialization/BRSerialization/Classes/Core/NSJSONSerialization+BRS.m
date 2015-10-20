@@ -18,6 +18,7 @@
 {
     NSError *serializationError = nil;
     
+    
     id _primitive = [BRSerializationFacade serializeObject:obj
                                                        serialiser:serializer
                                                             error:&serializationError];
