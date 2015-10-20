@@ -2,7 +2,7 @@
 
 The BRSerialization SDK allow you to serialize and deserialise complex objects to basic data type (that can be valid to be a JSON objects or a plist) back and forth.
 
-BRSerialization SDK has an extension to convert direction fron JSON data to complex object back and forth. It can aslo be a basic entry for SOAP.
+BRSerialization SDK has an extension to for direct serialization from JSON data to complex object back and forth. It can aslo be a basic entry for SOAP.
 
 ## Table of Contents
 
@@ -41,8 +41,7 @@ You override these methods
 
 Take a look at the example below. Here we need to convert a complex NSUUID object to a basic data type where in this case is going to be an NSString. 
 
-The serialize method expect to have an NSSUUID that gets converted to NSString
-The deserialize method expect an NSString that gets converted to NSSUUID.
+The serialize method expect to have an NSSUUID that gets converted to NSString while The deserialize method expect an NSString that gets converted to NSSUUID.
 
 To illustrate lets take a look at the implementation of NSSUIDSerialization.
 
@@ -99,7 +98,9 @@ NSString *uuidString = [BRSerializationFacade serializeObject:uuid serialiser:se
 NSUUID *newuuid = [BRSerializationFacade deserializeData:uuidString serialiser:serialization error:nil];
 ```
 
-The SDK already comes with some handy Serilizations classes for basic needs.  You can still add your own for any none handled complex objects. 
+The SDK already comes with some handy Serializations classes for basic needs.  Major one BRObjectSerialization for object serialization, BRTypedArraySerialization for array of objects, etc... 
+
+You can still add your own for any none handled complex objects.
 
 
 ## <a name="Object Serialization"></a>Object Serialization
@@ -141,14 +142,16 @@ will result in the following NSDictionary
 
 ```
 
-As you can see the Customer Object is transformed to NSDictionary. Properties with basic data types like identifier and name stays with same data type. Properties with NSURL complext datatype like websiteURL and contactURL ended up beeing converted to NSString.
+As you can see the Customer Object is transformed to NSDictionary. Properties with basic data types like identifier and name stays with same data type. Properties with NSURL complex datatype like websiteURL and contactURL ended up being converted to NSString.
 
-Now Deserializing The NSDictionary result will convert it back to complex object. 
+ Deserializing The NSDictionary result will convert it back to complex object. 
 
-How to configure BRObjectSerialization to achieve the above result.
+This How to configure BRObjectSerialization to achieve the above result.
 
 ```
-+ (id<BRISerialization>) serialization
+@implementation Customer
+
++ (BRObjectSerialization *) serialization
 {
     Class clazz = [Customer class];
     
@@ -177,9 +180,72 @@ How to configure BRObjectSerialization to achieve the above result.
 @end
 ```
 
-BRObjectSerialization expect you to provide a properties mapper. Where you map property you are interested in to their specific key. You see that I have NSStringFromSelector just to keep things typed. In addotion, each property that require special serialization you need to pass that to BRObjectSerialization.
+BRObjectSerialization expect you to identify the class of the object and to provide a properties mapper. You map property you are interested to their specific key. You see that I have NSStringFromSelector just to keep things typed. In addition, each property that require special serialization you need to pass that to BRObjectSerialization by calling addSerialization.
 
+If Customer has a property named owner of type Owner class.You will need a BRObjectSerialization for Owner that you pass it to Customer BRObjectSerialization.
 
+Take the above example and see the added code. For simpli
+
+```
+@interface Owner : NSObject
+@property (nonatomic, strong) NSString *phoneNumber;
+
+@end
+
+@interface Customer : NSObject
+...
+@property (nonatomic,strong) Owner name
+
+@end
+```
+
+Owner BRObjectSerialization
+
+```
+@implementation Owner
+
++ (BRObjectSerialization *) serialization
+{
+    Class clazz = [Owner class];
+    
+    NSString *phoneNumberProperty = NSStringFromSelector(@selector(phoneNumber));
+
+    
+    BRObjectSerialization *_serialisation = [BRObjectSerialization objectSerializationWith:clazz
+       propertiesMapper:[OrderedDictionary dictionaryWithObjectsAndKeys:
+       			@"phoneNumberProperty",phoneNumberProperty,
+    return _serialisation;
+
+}
+@end
+```
+
+Customer BRObjectSerialization
+```
++ (BRObjectSerialization *) serialization
+{
+    Class clazz = [Customer class];
+    
+    ...
+    NSString *onwerProperty = NSStringFromSelector(@selector(owner));
+
+    
+    BRObjectSerialization *_serialisation = [BRObjectSerialization objectSerializationWith:clazz
+                  propertiesMapper:[OrderedDictionary dictionaryWithObjectsAndKeys:
+                                              ...
+                                              @"owner", onwerProperty,
+                                               nil]];
+    
+    ...
+    [_serialisation addSerialization:[Owner serialization]
+                         forProperty:onwerProperty];
+    
+    return _serialisation;
+
+}
+@end
+
+```
 
 
 ## <a name="installation"></a>Installation
