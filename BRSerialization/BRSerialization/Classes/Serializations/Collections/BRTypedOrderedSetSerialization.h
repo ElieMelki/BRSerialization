@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "BRTypedArraySerialization.h"
 
-@interface BRTypedOrderedSetSerialization : BRTypedArraySerialization
+@interface BRTypedOrderedSetSerialization : NSObject<BRISerialization>
 
 + (instancetype) typedOrderedSetSerializationWith:(id<BRSerializer,BRDeserializer>)theSerializer;
 

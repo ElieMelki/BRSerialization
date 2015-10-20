@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "BRObjectSerialization.h"
 
-@interface BRTypedSetSerialization : NSObject<BRSerializer,BRDeserializer>
+@interface BRTypedSetSerialization : NSObject<BRISerialization>
 
 + (instancetype) typedSetSerializationWith:(id<BRSerializer,BRDeserializer>)theSerializer;
 

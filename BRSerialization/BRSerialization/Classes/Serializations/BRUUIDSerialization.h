@@ -7,10 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BRSerializer.h"
-#import "BRDeserializer.h"
+#import "BRISerialization.h"
 
-@interface BRUUIDSerialization : NSObject<BRSerializer,BRDeserializer>
+@interface BRUUIDSerialization : NSObject<BRISerialization>
 
 + (instancetype) UUIDSerialization;
 

@@ -7,10 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BRSerializer.h"
-#import "BRDeserializer.h"
+#import "BRISerialization.h"
 
-@interface BRDateSerialization : NSObject<BRSerializer,BRDeserializer>
+@interface BRDateSerialization : NSObject<BRISerialization>
 
 + (instancetype) dateSerializationWith:(NSString *)theDateFormat;
 

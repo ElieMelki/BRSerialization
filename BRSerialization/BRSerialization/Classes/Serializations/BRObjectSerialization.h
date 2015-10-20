@@ -7,23 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BRSerializer.h"
-#import "BRDeserializer.h"
+#import "BRISerialization.h"
 
+@interface BRObjectSerialization : NSObject<BRISerialization>
 
-@interface BRObjectSerialization : NSObject<BRSerializer, BRDeserializer>
-
-+ (instancetype) objectSerializationWith:(Class)theClass;
++ (instancetype) objectSerializationWith:(Class)theClass propertiesMapper:(NSDictionary *)propertiesMapper;
 
 + (instancetype) objectSerializationWith:(Class)theClass combinedWithfirst:(BRObjectSerialization *)objectSerialization second:(BRObjectSerialization *)objectSerialization;
 
-- (id) initWithClass:(Class)theClass;
+- (id) initWithClass:(Class)theClass propertiesMapper:(NSDictionary *)propertiesMapper;
 
 @property (nonatomic, readonly) Class classType;
 
-@property (nonatomic, strong) NSDictionary *propertiesMapper;
-@property (nonatomic, strong) NSDictionary *serializers;
-@property (nonatomic, strong) NSDictionary *deserializers;
+- (void) addSerialization:(id<BRISerialization>)serialization forProperty:(NSString *)property;
+- (void) removeSerializationForProperty:(NSString *)property;
 
 - (NSDictionary *) serialize:(id)theObject;
 - (id) deserialize:(NSDictionary *)theData;
