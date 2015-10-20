@@ -182,9 +182,9 @@ This How to configure BRObjectSerialization to achieve the above result.
 
 BRObjectSerialization expect you to identify the class of the object and to provide a properties mapper. You map property you are interested to their specific key. You see that I have NSStringFromSelector just to keep things typed. In addition, each property that require special serialization you need to pass that to BRObjectSerialization by calling addSerialization.
 
-If Customer has a property named owner of type Owner class.You will need a BRObjectSerialization for Owner that you pass it to Customer BRObjectSerialization.
+If Customer has a property named owner of type Owner class.You will need a BRObjectSerialization for Owner that you pass it to Customer BRObjectSerialization serialization.
 
-Take the above example and see the added code. For simpli
+Take the above example and see the added code.
 
 ```
 @interface Owner : NSObject
@@ -250,6 +250,12 @@ Customer BRObjectSerialization
 
 ## <a name="installation"></a>Installation
 
-For now you can download the project and the add the BRSerialization project as sub projects. You can also use cocoapod refering directly to git url. Later we will push the library to public cocoapod repo. 
+For now you can download the project and add the BRSerialization project as a sub project. You can also use cocoapod referring  git url directly. Later we will push the library to public cocoapod repo. 
+
+```
+pod BRSerialization, git => https://github.com/eliemelki/iOS-Serialization
+```
+
+
 
 
