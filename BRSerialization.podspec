@@ -2,7 +2,6 @@ Pod::Spec.new do |s|
   s.name         = "BRSerialization"
   s.version      = "1.0"
   s.summary      = "iOS library"
-  s.homepage     = "http://me.com"
   s.author       = { "Elie Melki" => "elie.j.melki@gmail.com" }
   s.platform     = :ios
   s.source       = { :git => "https://github.com/ElieMelki/BRSerialization.git" , :tag => s.version }
