@@ -10,6 +10,8 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '5.0'
   s.frameworks = 'Foundation'
   s.requires_arc = true
+  s.dependency 'OrderedDictionary', '~> 1.4'
+  s.xcconfig  =  { 'OTHER_LDFLAGS' => '-ObjC' }
   s.license      = {
     :type => 'Copyright',
     :text => <<-LICENSE

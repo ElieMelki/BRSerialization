@@ -77,7 +77,7 @@
 {
     if ([theObject isKindOfClass:self.classType])
     {
-        OrderedDictionary *_jsonDic = [OrderedDictionary dictionary];
+        MutableOrderedDictionary *_jsonDic = [MutableOrderedDictionary dictionary];
         for (NSString *_property in [self.propertiesMapper allKeys])
         {
             NSString *_key = [self.propertiesMapper objectForKey:_property];
