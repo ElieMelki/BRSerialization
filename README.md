@@ -250,10 +250,8 @@ Customer BRObjectSerialization
 
 ## <a name="installation"></a>Installation
 
-For now you can download the project and add the BRSerialization project as a sub project. You can also use cocoapod referring  git url directly. Later we will push the library to public cocoapod repo. 
-
 ```
-pod BRSerialization, git => https://github.com/eliemelki/iOS-Serialization
+pod 'BRSerialization', '~> 1.0'
 ```
 
 
